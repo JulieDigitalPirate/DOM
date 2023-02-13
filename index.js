@@ -1,38 +1,139 @@
-// querySelector
-'use strict';
+let cards = document.querySelector('.cards')
 
-// const name = document.querySelector('.name')
-// console.log(name)
+// console.dir(cards)
+let allCards = document.querySelectorAll('.card')
+console.dir(allCards)
 
-// const address = document.querySelector('#address')
-// console.log(address)
+for (let i = 0; i < 4; i++){
+    let newBox = document.createElement('div')
+    newBox.className = 'card'
+    cards.appendChild(newBox)
+    newBox.innerHTML = `Card ${allCards.length + 1}`
+    newBox.style.cssText = `
+        border-radius: 50%;
+        background-color: yellow;
+        font-weight: bold;
+        font-size: 20px;
+        padding-top: 7px;
+        display: flex;
+        justify-content: center
+    `
+    allCards = document.querySelectorAll('.card')
+}
 
-// const input = document.querySelectorAll('.last-two')
-// console.dir(input)
 
-// const mai = document.querySelector('.main')
-// const mainInputs = mai.querySelectorAll('input')
-// console.dir(mainInputs)
 
-const secondNameDiv = document.createElement('div')
-secondNameDiv.className = 'second-name'
 
-const secondNameLabel = document.createElement('label')
-secondNameLabel.innerText = 'Second name: '
+for (let i = 0; i < allCards.length; i++){
+allCards[i].style.cssText = `
+    border-radius: 50%;
+    background-color: rgb(${rand()}, ${rand()}, ${rand()});
+    font-weight: bold;
+    font-size: 20px;
+    padding-top: 7px;
+    display: flex;
+    position: relative;
+    justify-content: center
+`
 
-const secondNameInput = document.createElement('input')
-secondNameInput.id = 'second-name-id'
-secondNameInput.name = 'second-name-name'
-secondNameInput.placeholder = 'Enter second name'
-secondNameInput.type = 'text'
 
-secondNameLabel.append(secondNameInput)
-secondNameDiv.append(secondNameLabel)
+let innerDiv = document.createElement('div')
+innerDiv.className = 'innerDiv'
+allCards[i].appendChild(innerDiv)
+innerDiv.innerText = getNum(allCards[i])
+innerDiv.style.cssText = `
+    background-color: red;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 50%;
+    color: white;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 40%;
+    transform: translate(-50; -50%)
+    `
 
-// const main = document.querySelector('.main')
-// main.append(secondNameDiv)
+}
+let content = allCards.innerHTML
+console.log(content)
+function getNum (elem) {
+    let text = elem.innerText.trim();
+    return text[text.length-1]
+}
+function rand() {
+    return Math.floor(Math.random() * 255)
+}
 
-const name = document.querySelector('.name')
-name.insertAdjacentElement('afterend', secondNameDiv)
-console.dir(name.className)
-console.dir(name.dataset.name)
+cards.addEventListener('click', (Event) => {
+    Event.preventDefault()
+
+    for (let i = 0; i < allCards.length; i++){
+
+        if (Event.target == allCards[i]){
+            allCards[i].style.cssText = `
+    border-radius: 50%;
+    background-color: rgb(${rand()}, ${rand()}, ${rand()});
+    font-weight: bold;
+    font-size: 20px;
+    padding-top: 7px;
+    display: flex;
+    position: relative;
+    justify-content: center
+`
+
+        }
+        
+      
+    }
+})
+
+let btn = document.createElement('button')
+btn.innerText = ' Нажми МЕНЯ =)'
+btn.style.cssText = `
+background-color: red ;
+color: black;
+`
+cards.appendChild(btn)
+btn.addEventListener('click', event => {
+    event.preventDefault();
+    for (let i = 0; i < allCards.length; i++){
+        allCards[i].style.cssText = `
+            border-radius: 50%;
+            background-color: rgb(${rand()}, ${rand()}, ${rand()});
+            font-weight: bold;
+            font-size: 20px;
+            padding-top: 7px;
+            display: flex;
+            position: relative;
+            justify-content: center
+        `
+        
+        
+        let innerDiv = document.createElement('div')
+        innerDiv.className = 'innerDiv'
+        allCards[i].appendChild(innerDiv)
+        innerDiv.innerText = getNum(allCards[i])
+        innerDiv.style.cssText = `
+            background-color: red;
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 50%;
+            color: white;
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: 40%;
+            transform: translate(-50; -50%)
+            `
+        
+        }
+})
