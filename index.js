@@ -8,7 +8,7 @@ for (let i = 0; i < 4; i++){
     let newBox = document.createElement('div')
     newBox.className = 'card'
     cards.appendChild(newBox)
-    newBox.innerHTML = `Card ${allCards.length + 1}`
+    newBox.innerText = `Card ${allCards.length + 1}`
     newBox.style.cssText = `
         border-radius: 50%;
         background-color: yellow;
@@ -20,8 +20,6 @@ for (let i = 0; i < 4; i++){
     `
     allCards = document.querySelectorAll('.card')
 }
-
-
 
 
 for (let i = 0; i < allCards.length; i++){
@@ -59,8 +57,7 @@ innerDiv.style.cssText = `
     `
 
 }
-let content = allCards.innerHTML
-console.log(content)
+
 function getNum (elem) {
     let text = elem.innerText.trim();
     return text[text.length-1]
@@ -137,3 +134,11 @@ btn.addEventListener('click', event => {
         
         }
 })
+
+for(let i = 0; i < allCards.length; i++){
+allCards[i].innerHTML = `Card ${i+ 1}`
+allCards = document.querySelectorAll('.card')
+
+
+
+}
